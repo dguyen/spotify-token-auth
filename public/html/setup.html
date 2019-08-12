@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Setup Spotify Wallpaper App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="../css/setup.css" />
+  </head>
+  <body>
+    <div id="setupCard">
+      <div><h1>Setup Spotify App</h1></div>
+      <ol>
+        <li>Sign into Spotify by clicking <a id="signInLink" href="api/login">here</a></li>
+        <div id="tokenReceived" style="display: none">
+          <li>Copy the token below</li>
+          <div class="textContainer">
+            <input type="text" class="textField" id="spotifyToken">
+            <div class="textButton noselect" onclick="copyToken()"><span>Copy</span></div>
+          </div>
+          <li>Return to the Spotify Wallpaper Application and paste the token there</li>
+          <li>Select '<strong>Link Spotify</strong>' on the Spotify Wallpaper Application</li>
+          <li>You're done!</li>
+        </div>
+      </ol>
+    </div>
+    <script src="../js/setup.js"></script>
+  </body>
+</html>

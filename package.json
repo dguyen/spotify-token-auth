@@ -1,0 +1,26 @@
+{
+  "name": "spotify-token-auth",
+  "version": "1.0.0",
+  "description": "Authenticates spotify user and returns required token",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dguyen/spotify-token-auth.git"
+  },
+  "author": "David Nguyen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dguyen/spotify-token-auth/issues"
+  },
+  "homepage": "https://github.com/dguyen/spotify-token-auth#readme",
+  "dependencies": {
+    "cookie-parser": "^1.4.4",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "request": "^2.88.0"
+  }
+}

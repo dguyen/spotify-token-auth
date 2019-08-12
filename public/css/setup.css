@@ -1,0 +1,98 @@
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background: linear-gradient(to left, #79AFD2, rgb(171, 58, 202));
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  width: 100wh;
+  margin: 0;
+}
+
+#setupCard {
+  margin-top: 25vh;
+  text-align: center;
+  border-radius: 20px;
+  width: fit-content;
+  height: fit-content;
+  padding: 20px 50px 30px 50px;
+  background-color: #0d0d0d;
+	color: rgb(231, 231, 231);
+}
+
+@media (max-width: 1000px) {
+  #setupCard {
+    width: 80%;
+  }
+}
+
+@media (max-width: 500px) {
+  #setupCard {
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    margin: 0;
+    padding-top: 20vh;
+  }
+}
+
+ol {
+  list-style-position: inside;
+  padding: 0;
+}
+
+li {
+  margin: 0.5em 0 0.5em 0;
+}
+
+#signInLink {
+  color: orange;
+}
+
+.textContainer {
+  display: flex;
+  margin: 0 auto 0 auto;
+  height: 30px;
+  width: 95%;
+}
+
+.textField {
+  border: none;
+  background-color: rgb(255, 255, 255);
+  width: calc(100% - 50px);
+  border-top-left-radius: 500px;
+  border-bottom-left-radius: 500px;
+  text-align: center;
+}
+
+.textField:focus {
+  outline: none;
+}
+
+.textButton {
+  background-color: rgb(110, 212, 110);
+  height: inherit;
+  width: 50px;
+  border-top-right-radius: 500px;
+  border-bottom-right-radius: 500px;
+  color: black;
+  font-size: 0.9em;
+  line-height: 27.5px;
+}
+
+.textButton:hover {
+  background-color: rgb(140, 214, 140);
+}
+
+.textButton:active {
+  background-color: rgb(66, 172, 66);
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
