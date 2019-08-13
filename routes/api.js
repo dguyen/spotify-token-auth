@@ -3,17 +3,12 @@ const router = express.Router();
 const querystring = require('querystring');
 const request = require('request');
 const cors = require('cors');
-
-// Spotify API settings
-const client_id = null; // Place Client ID here
-const client_secret = null; // Place Client Secret here
-const redirect_uri = 'http://localhost:3000/api/callback';
-const stateKey = 'spotify_auth_state';
+const spotifyApiSettings = require('../spotify-api-settings');
 
 (function checkAPiKeys() {
-  if (!client_id) {
+  if (!spotifyApiSettings.client_id) {
     throw new Error('Spotify Client ID required');
-  } else if (!client_secret) {
+  } else if (!spotifyApiSettings.client_secret) {
     throw new Error('Spotify Client Secret required');
   }
 })();
@@ -44,16 +39,16 @@ var generateRandomString = function (length) {
 // Redirects user to authenticate their account
 router.get('/login', function (req, res) {
   var state = generateRandomString(16);
-  res.cookie(stateKey, state);
+  res.cookie(spotifyApiSettings.stateKey, state);
 
   // Request authorization
   var scope = 'user-read-private user-read-email user-library-read user-read-playback-state user-modify-playback-state';
   res.redirect('https://accounts.spotify.com/authorize?' +
     querystring.stringify({
       response_type: 'code',
-      client_id: client_id,
+      client_id: spotifyApiSettings.client_id,
       scope: scope,
-      redirect_uri: redirect_uri,
+      redirect_uri: spotifyApiSettings.redirect_uri,
       state: state
     })
   );
@@ -63,23 +58,23 @@ router.get('/login', function (req, res) {
 router.get('/callback', function (req, res) {
   var code = req.query.code || null;
   var state = req.query.state || null;
-  var storedState = req.cookies ? req.cookies[stateKey] : null;
+  var storedState = req.cookies ? req.cookies[spotifyApiSettings.stateKey] : null;
   if (state === null || state !== storedState) {
     res.redirect('/#' +
       querystring.stringify({
         error: 'state_mismatch'
       }));
   } else {
-    res.clearCookie(stateKey);
+    res.clearCookie(spotifyApiSettings.stateKey);
     var authOptions = {
       url: 'https://accounts.spotify.com/api/token',
       form: {
         code: code,
-        redirect_uri: redirect_uri,
+        redirect_uri: spotifyApiSettings.redirect_uri,
         grant_type: 'authorization_code'
       },
       headers: {
-        'Authorization': 'Basic ' + (new Buffer(client_id + ':' + client_secret).toString('base64'))
+        'Authorization': 'Basic ' + (new Buffer(spotifyApiSettings.client_id + ':' + spotifyApiSettings.client_secret).toString('base64'))
       },
       json: true
     };
@@ -107,7 +102,7 @@ router.get('/refresh_token', cors(), function (req, res) {
   var refresh_token = req.query.refresh_token;
   var authOptions = {
     url: 'https://accounts.spotify.com/api/token',
-    headers: { 'Authorization': 'Basic ' + (new Buffer(client_id + ':' + client_secret).toString('base64')) },
+    headers: { 'Authorization': 'Basic ' + (new Buffer(spotifyApiSettings.client_id + ':' + spotifyApiSettings.client_secret).toString('base64')) },
     form: {
       grant_type: 'refresh_token',
       refresh_token: refresh_token
