@@ -12,11 +12,13 @@ body {
   margin-top: 25vh;
   text-align: center;
   border-radius: 20px;
-  width: fit-content;
+  height: intrinsic;  
+  height: -moz-fit-content;
   height: fit-content;
   padding: 20px 50px 30px 50px;
   background-color: #0d0d0d;
 	color: rgb(231, 231, 231);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 @media (max-width: 1000px) {
